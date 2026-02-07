@@ -23,6 +23,13 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
 
+    - name: Create Credentials File
+      shell: bash
+      env:
+        FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+      run: |
+        echo "$FIREBASE_CREDENTIALS" > jonascuts-5aac9-firebase-adminsdk-fbsvc-2de12c37aa.json
+
     - name: Build with PyInstaller
       # Using the latest spec file found: GestorCitas_v4.spec
       # If this fails, we might need to regenerate the spec or use a different one.
